@@ -113,10 +113,14 @@
 
   async function copiar(texto) {
     if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(texto);
-      return true;
+      try {
+        await navigator.clipboard.writeText(texto);
+        return true;
+      } catch {
+        /* sin permiso o sin foco: se intenta el respaldo */
+      }
     }
-    // Respaldo para http: textarea temporal + execCommand
+    // Respaldo para http o si falla la API: textarea temporal + execCommand
     const area = document.createElement("textarea");
     area.value = texto;
     area.setAttribute("readonly", "");
