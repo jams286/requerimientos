@@ -1,0 +1,96 @@
+{
+  "_ayuda": "tipo de campo: texto | fecha | opciones (van como '- **Etiqueta:** valor' bajo el título), area (párrafo), lista (viñetas, una por línea), pasos (numerada), checklist (- [ ]), codigo (bloque de código), cita (> texto textual). Cada tipo de requerimiento lista sus campos en orden.",
+  "campos": {
+    "titulo":          { "etiqueta": "Título", "tipo": "texto", "ayuda": "Corto; se usa en el nombre del .md" },
+    "proyecto":        { "etiqueta": "Proyecto / repo", "tipo": "texto", "ayuda": "Nombre, ruta o URL del repo" },
+    "stack":           { "etiqueta": "Stack", "tipo": "texto", "ayuda": "Lenguajes, frameworks, servidor" },
+    "archivos":        { "etiqueta": "Archivos clave", "tipo": "lista", "ayuda": "Uno por línea" },
+    "contexto":        { "etiqueta": "Contexto", "tipo": "area", "ayuda": "Por qué hace falta, qué hay hoy" },
+    "objetivo":        { "etiqueta": "Objetivo", "tipo": "area" },
+    "alcance":         { "etiqueta": "Alcance", "tipo": "lista", "ayuda": "Uno por línea" },
+    "fuera_alcance":   { "etiqueta": "Fuera de alcance", "tipo": "lista", "ayuda": "Uno por línea" },
+    "criterios":       { "etiqueta": "Criterios de aceptación", "tipo": "checklist", "ayuda": "Uno por línea, verificables" },
+    "restricciones":   { "etiqueta": "Restricciones", "tipo": "lista", "ayuda": "Uno por línea" },
+    "terminado":       { "etiqueta": "Definición de terminado", "tipo": "checklist", "ayuda": "Uno por línea" },
+    "referencias":     { "etiqueta": "Referencias", "tipo": "lista", "ayuda": "Links, issues, capturas; uno por línea" },
+    "preguntas":       { "etiqueta": "Preguntas abiertas", "tipo": "lista", "ayuda": "Una por línea" },
+    "modo_trabajo":    { "etiqueta": "Cómo quiero que trabaje Claude", "tipo": "area", "ayuda": "Ej.: lista el plan y espera mi OK" },
+
+    "idea":            { "etiqueta": "La idea", "tipo": "area" },
+    "problema":        { "etiqueta": "Qué problema resuelve", "tipo": "area" },
+    "espero":          { "etiqueta": "Qué espero de Claude", "tipo": "area", "ayuda": "Explorar opciones, un prototipo, un plan…" },
+
+    "usuario":         { "etiqueta": "Usuario y caso de uso", "tipo": "area", "ayuda": "Como <quién> quiero <qué> para <para qué>" },
+    "comportamiento":  { "etiqueta": "Comportamiento esperado", "tipo": "area" },
+    "ui":              { "etiqueta": "Notas de UI/UX", "tipo": "area" },
+    "datos":           { "etiqueta": "Datos, API o esquema afectados", "tipo": "area" },
+
+    "pasos":           { "etiqueta": "Pasos para reproducir", "tipo": "pasos", "ayuda": "Uno por línea" },
+    "esperado":        { "etiqueta": "Resultado esperado", "tipo": "area" },
+    "actual":          { "etiqueta": "Resultado actual", "tipo": "area" },
+    "entorno":         { "etiqueta": "Entorno", "tipo": "area", "ayuda": "Versión, navegador, dispositivo, servidor" },
+    "logs":            { "etiqueta": "Logs", "tipo": "codigo", "ayuda": "Pega el error o el log" },
+    "frecuencia":      { "etiqueta": "Frecuencia", "tipo": "opciones", "opciones": ["Siempre", "A veces", "Una vez"] },
+    "desde":           { "etiqueta": "Desde cuándo / último cambio", "tipo": "texto" },
+    "workaround":      { "etiqueta": "Workaround", "tipo": "area" },
+    "severidad":       { "etiqueta": "Severidad", "tipo": "opciones", "opciones": ["Bloquea", "Alta", "Media", "Baja"] },
+
+    "solicitante":     { "etiqueta": "Quién lo pide", "tipo": "texto" },
+    "fecha":           { "etiqueta": "Fecha del pedido", "tipo": "fecha" },
+    "fuente":          { "etiqueta": "Fuente", "tipo": "texto", "ayuda": "WhatsApp, correo, reunión…" },
+    "pedido_original": { "etiqueta": "Pedido original", "tipo": "cita", "ayuda": "Tal como llegó" },
+    "fecha_limite":    { "etiqueta": "Fecha límite", "tipo": "fecha" },
+    "prioridad":       { "etiqueta": "Prioridad", "tipo": "opciones", "opciones": ["Alta", "Media", "Baja"] },
+
+    "texto_crudo":     { "etiqueta": "Texto crudo", "tipo": "codigo", "ayuda": "Chat, correo, Teams, notas de reunión…" },
+    "origen":          { "etiqueta": "Origen", "tipo": "texto", "ayuda": "Chat, correo, Teams, reunión, en persona" },
+    "tipo_sugerido":   { "etiqueta": "Tipo sugerido", "tipo": "opciones", "opciones": ["Feature", "Bug", "Requerimiento de cliente", "Idea suelta"] }
+  },
+  "tipos": [
+    {
+      "id": "idea",
+      "nombre": "Idea suelta",
+      "campos": ["titulo", "proyecto", "idea", "problema", "espero", "preguntas"]
+    },
+    {
+      "id": "feature",
+      "nombre": "Feature",
+      "campos": ["titulo", "proyecto", "stack", "archivos", "contexto", "objetivo", "usuario", "comportamiento", "ui", "datos",
+                 "alcance", "fuera_alcance", "criterios", "restricciones", "terminado", "referencias", "preguntas", "modo_trabajo"]
+    },
+    {
+      "id": "bug",
+      "nombre": "Bug",
+      "campos": ["titulo", "proyecto", "severidad", "frecuencia", "desde", "archivos", "pasos", "esperado", "actual", "entorno", "logs",
+                 "workaround", "criterios", "restricciones", "referencias", "preguntas", "modo_trabajo"]
+    },
+    {
+      "id": "cliente",
+      "nombre": "Requerimiento de cliente",
+      "campos": ["titulo", "solicitante", "fecha", "fuente", "fecha_limite", "prioridad", "proyecto", "stack", "pedido_original", "archivos",
+                 "contexto", "objetivo", "alcance", "fuera_alcance", "criterios", "restricciones", "terminado", "referencias", "preguntas", "modo_trabajo"]
+    },
+    {
+      "id": "libre",
+      "nombre": "Libre",
+      "campos": ["titulo", "origen", "proyecto", "tipo_sugerido", "texto_crudo"],
+      "prompt": [
+        "Convierte el texto de abajo en un requerimiento formal en Markdown con la plantilla «{{plantilla_nombre}}».",
+        "",
+        "Reglas:",
+        "- Usa solo lo que dice el texto. No inventes alcance, criterios, fechas ni detalles técnicos.",
+        "- Omite las secciones de la plantilla para las que el texto no da información.",
+        "- Si algo es ambiguo, no lo resuelvas: anótalo como pregunta.",
+        "- Termina con la sección \"Preguntas abiertas\": lo que falta saber para poder implementarlo.",
+        "",
+        "{{datos}}",
+        "",
+        "Plantilla (encabezados en este orden):",
+        "{{plantilla}}",
+        "",
+        "Texto:",
+        "{{texto_crudo}}"
+      ]
+    }
+  ]
+}
