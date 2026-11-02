@@ -1,0 +1,158 @@
+:root {
+  --fondo: #eef1f8;
+  --superficie: #ffffff;
+  --tinta: #1d2333;
+  --tinta-suave: #5d6578;
+  --linea: #d9deea;
+  --acento: #3d5bd9;
+  --acento-suave: #e3e8fb;
+  --bien: #3a9d5d;
+  --fuente: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--tinta);
+  font-family: var(--fuente);
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+button:disabled { opacity: 0.5; cursor: default; }
+
+.pagina {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+  display: grid;
+  gap: 16px;
+}
+
+.cabecera { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+h1 { margin: 4px 0 0; font-size: 1.9rem; }
+h2 { margin: 0; font-size: 1rem; color: var(--tinta-suave); }
+
+.boton-texto {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--tinta-suave);
+  font-weight: 700;
+}
+
+/* ---------- Tipos ---------- */
+
+.tipos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 14px;
+  background: var(--linea);
+}
+.tipos button {
+  flex: 1 1 auto;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 11px;
+  background: transparent;
+  font-weight: 700;
+  color: var(--tinta-suave);
+}
+.tipos button[aria-selected="true"] {
+  background: var(--superficie);
+  color: var(--tinta);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- Formulario ---------- */
+
+.columnas { display: grid; gap: 16px; align-items: start; }
+
+.formulario, .vista {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+}
+
+.fila { display: grid; gap: 6px; padding: 6px 0 10px; }
+.campo { font-weight: 700; font-size: 0.95rem; }
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--linea);
+  border-radius: 10px;
+  background: var(--fondo);
+  font-size: 1rem; /* 16px evita el zoom automático de iOS al enfocar */
+}
+textarea { resize: vertical; line-height: 1.4; min-height: 3.2em; }
+.mono { font-family: var(--mono); font-size: 0.9rem; }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--acento); outline-offset: -1px; background: var(--superficie); }
+::placeholder { color: #9aa1b2; }
+
+/* ---------- Vista previa ---------- */
+
+.vista { gap: 12px; }
+
+.markdown {
+  margin: 0;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--fondo);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 60vh;
+  overflow: auto;
+}
+.markdown.vacia { color: var(--tinta-suave); font-family: var(--fuente); }
+
+.acciones { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.boton-principal, .boton {
+  padding: 13px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.boton-principal { background: var(--acento); color: #fff; }
+.boton-principal.copiado { background: var(--bien); }
+.boton { background: var(--acento-suave); color: var(--acento); }
+
+/* En el celular la vista previa queda abajo; los botones quedan fijos para no tener que bajar */
+@media (max-width: 899px) {
+  .pagina { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+  .acciones {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    background: var(--superficie);
+    border-top: 1px solid var(--linea);
+  }
+}
+
+@media (min-width: 900px) {
+  .pagina { max-width: 1180px; }
+  .columnas { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .vista { position: sticky; top: 16px; }
+  .markdown { max-height: calc(100vh - 160px); }
+}
+
+.nota { margin: 4px 2px; font-size: 0.9rem; color: var(--tinta-suave); }
+code { font-family: var(--mono); font-size: 0.9em; }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eef1f8">
+  <title>Requerimientos</title>
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="pagina">
+    <header class="cabecera">
+      <h1>Requerimientos</h1>
+      <button type="button" class="boton-texto" id="limpiar">Limpiar</button>
+    </header>
+
+    <div class="tipos" id="tipos" role="tablist" aria-label="Tipo de requerimiento"></div>
+
+    <div class="columnas">
+      <form class="formulario" id="formulario" autocomplete="off"></form>
+
+      <section class="vista" aria-labelledby="vista-titulo">
+        <h2 id="vista-titulo">Vista previa</h2>
+        <pre class="markdown" id="markdown" aria-live="off"></pre>
+        <div class="acciones">
+          <button type="button" class="boton-principal" id="copiar">Copiar</button>
+          <button type="button" class="boton" id="descargar">Descargar .md</button>
+        </div>
+      </section>
+    </div>
+
+    <p class="nota">El borrador se guarda solo en este navegador. Los campos se editan en <code>plantillas.json</code>.</p>
+  </main>
+
+  <script src="generar.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
